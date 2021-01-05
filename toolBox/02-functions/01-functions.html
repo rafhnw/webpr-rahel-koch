@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>functions</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+        Functions always return a value. In JavaScript, if no return value is specified, the function will return undefined by default.
+        */
+
+        //print line --> true
+        document.writeln( 1 !== 2);
+
+        //while fun1 is not defined --> error occurs in browser console (interpreted not compiled)
+        document.writeln( fun1() === 1);
+        document.writeln( fun1(42 === 1)); //return one because of defined return value
+
+        function fun1()    { return 1; } //fun1 is defined
+
+        document.writeln( fun1()   === 1 );
+        document.writeln( fun1(42) === 1 ); //function has no parameter --> not considered
+
+
+        function fun2()    { return 1; }  //overwritten by the following function
+        function fun2(arg) { return arg; } //returns parameter arg
+
+        document.writeln( fun2() !== 1  );
+        document.writeln( fun2() === undefined ); //if no parameter is defined
+        document.writeln( fun2(42) === 42 );
+
+        function noReturn()    { 1; } //needs return
+        document.writeln( noReturn() !== 1 ); //is true because of missing return in defined function
+
+        //defines function, could return list of statements
+        const noReturn2 = () => { 1; };
+        document.writeln( noReturn2()); //undefined
+        document.writeln( noReturn2() !== 1 ); //true
+
+        const noReturn3 = () => 1; //function returns 1
+        document.writeln( noReturn3() === 1 );
+
+
+        /*
+        References
+        */
+
+        const myfun = fun1(); //just a reference, function is not called yet
+
+        const funs = [null, undefined, fun1, fun2]; //Array of references
+        document.writeln( funs[2]() === 1 ); //calls third reference
+
+
+        /*
+         higher order functions
+         */
+
+        function doit(waszutunist) {
+            return function bla(arg) { return waszutunist(arg) }
+        }
+
+        //Parameter can by type of function
+        document.writeln( doit(fun1)(10) === 1 ); //true
+
+        // Lamda Expression
+        const doit2 = callme => arg => callme(arg);
+
+        // function doit2(callme){
+        //     return arg; { return callme(arg)}
+        // }
+
+        document.writeln( doit2(fun1)(10) === 1 );
+
+        const doFun2 = doit2(fun1);
+
+        document.writeln( doFun2(10) === 1 );
+        document.writeln( doFun2()   === 1 );
+
+
+        //shows two --> cosider first two parameters
+        function one(x) {
+            return x;
+        }
+
+        function two(x, y){
+            return x + y;
+        }
+
+        function three(x, y, z) {
+            return x + y + z;
+        }
+
+        const functions = [null, one, two, three];
+        document.writeln(functions[2](1,1,1));
+
+
+
+
+
+    </script>
+</body>
+</html>

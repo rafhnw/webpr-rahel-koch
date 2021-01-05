@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>goodies</title>
+</head>
+<body>
+    <script>
+
+        /* Array Dekonstruktor */
+
+        //funktion mit leerer parameterliste, die immer ein Array von 1 und 2 zürick gibt
+        const foo = () => [1, 2];
+
+        //will auf erstes Element zugreifen?
+        //let x = foo() [0] // wäre eine möglichkeit --> nicht so schön
+
+        let [x, y] = foo();
+        document.writeln(x === 1); //wer an index 0 wird in x gespeichert und werd an index 1 in y
+
+        /* Array.from() */
+        // Kann Arrays basierens auf anderen Objekten erzeugen
+        // Arrays sind typeof functions
+
+        Array.from({length:10}); // erhalte array mit der länge 10 (alle objekte undefined)
+
+        Array.from({length:10}).map((elem, idx) => idx); // Array mit Zahlen von 1 bis 9
+        Array.from({length:10}).map(elem => 1); //habe element und mache irgendetwas damit, z.B gebe 1 zurück
+
+        Array.from({length:10}, (elem, idx) => idx); //from kann auch als zweiten parameter funktion angeben, die für mappen ist
+
+        /* Objkt Dekonstruktor */
+
+        const foo2 = () => { return {a:1, b:2, c:3} };
+        let {b, c} = foo2(); // b ist 2
+
+        const bar = ({d, e}) => console.log(d, e);
+        bar({a:1, b:2, d:4, e:5}) // logs 4-5
+
+        /* Strings */
+
+        // Let's go ---> "Let's go"
+        // Er saget "hi" zu ihr ---> "Er sagte \"hi\" zu Ihr"
+
+        // Variablen in Texten
+
+        let x = 1;
+
+        `x ist jetzt die Zahl 1 ${x}`
+
+        // mehrzeilig
+        `x ist jetzt die
+        Zahl 1 ${x}`
+
+        /* Elvis */
+
+        let x = null;
+        let y = { foo: () => console.log("hi")}
+
+        y.foo() //hi
+        x.foo() //null is not an object
+
+        // wenn x überhaupt da ist, dann rufe ich x.foo() auf und ansonsten mache ich nichts
+        x ? x.foo() : null;
+
+        // wird kompliziert
+        // x foo will ich aufrufen aber nur wenn x nicht null oder undifened ist
+        // nullSave dereferencing operator --> ?.
+
+        y = null;
+        y?.foo()
+
+        // elvis operator foo() etwas sinnvolles, dann will ich foo verwenden, sonst will ich etwas anderes machen
+        // foo() ? : willIchmachen()
+
+        // const filterEven = n => n % 2 === 0 ? n : undefined; // wenn Zahl gerade --> return Zahl, sonst undefined
+
+        /* Regular expressions */
+
+        const s = "The Rain in Spain stays mainly in the plains";
+        const result = s.replace("ain", "___");
+
+        String(/aaa/) // --> enthält 3 x a
+        String(/.../) // --> enthält 3 x beliebiger Buchstaben
+        String(/../) //  --> sonderzeichen
+
+        document.writeln(s);
+        document.writeln(result);
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

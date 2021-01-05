@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promises</title>
+</head>
+<body>
+<script>
+
+    /* then */
+
+    // returns always a Promise-Object
+    // p.then(onFulfill, onReject)
+
+    /* Callback functions */
+
+    // onFulfill wenn Promise erfüllt
+    // onReject wenn Promise fehlschlägt
+
+    /* catch */
+    // wenn wirdgendwo ein Error auftritt, wird .then() nicht mehr aufgerufen (übersprungen) und nur noch .catch() aufgerufen
+
+    /* Beispiele mit Promise */
+
+    const idPromise = x => new Promise( resolve => resolve(x));
+    const failPromise = err => new Promise( (resolve, reject) => reject(err));
+
+    // shows '1 2 3'
+    const writer = x => {
+        document.writeln(x);
+        return idPromise(x);
+    };
+
+    const inc = n => idPromise(n + 1);
+
+    const foo = async i => { // i ist zu Beginn 1
+        let x = await idPromise(i); //resolve(i)
+        while (x < 4) {
+            x = await writer(x); // gibt x aus, return idPromise(x) -> resolve(x)
+            x = await inc(x); //resolve(x + 1)
+        }
+    };
+    foo(1);
+
+    // reject is called --> error "not even"
+    const writer = x => {
+        document.writeln(x);
+        return idPromise(x);
+    };
+
+    const inc = n => idPromise(n + 1);
+    const filterEven = n => n % 2 === 0 ? idPromise(n): failPromise("not even");
+
+    const foo = async i => {
+        let x = await idPromise(i);
+        while (x < 4) {
+            x = await filterEven(x); // Error --> wird direkt diese Funktion ausgeführt
+            x = await writer(x);
+            x = await inc(x);
+        }
+    };
+    foo(1);
+
+
+</script>
+
+</body>
+</html>

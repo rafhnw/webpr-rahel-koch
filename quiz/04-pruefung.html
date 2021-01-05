@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+/*
+9d
+ */
+
+// const twoTimes = a => b => a * b;
+// const twice = twoTimes(2);
+
+const twice = a => 2 * a;
+
+[1,2,3].map(twice);
+
+[1,2,3].map(twice).toString() === "2,4,6";
+
+/*
+9e
+ */
+
+const devides = a => b => b % a === 0;
+
+[1,2,3,4,5,6].filter(devides(3)).toString() === "3,6";
+
+/* 9f */
+
+const join = b => (a,c) => a + b + c;
+
+[1,2,3].reduce(join('-')) === '1-2-3';
+
+console.log([1,2,3].reduce(join('-')));
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

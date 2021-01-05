@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+/*
+Q26
+*/
+//
+// const Scheduler = () => {
+//     let inProcess = false;
+//     const tasks = []; //will es an den anfang machen
+//     function process() {
+//         // schaut in lokaler varable nach, ob ic am arbeiten bin oder nicht, falls ich am arbeiten bin mache ich ein return
+//         // wenn ich schon am arbeiten bin, dann passiert garnichts
+//         if (inProcess) {
+//             return;
+//         }
+//         if (tasks.length === 0) {
+//             return;
+//         } // guard clause
+//         inProcess = true; // habe etwas zu tun, signalisiere, dass ich am arbeiten bin
+//         const task = tasks.pop();
+//         // rufe in asynchron auf, kein zugriff auf reject
+//         new Promise( (resolve, reject) => {
+//             task(resolve);
+//         }). then ( () => {
+//             inProcess = false;
+//             process();
+//         });
+//     }
+//
+//     // wenn tasks failed? tasks wird nur dann ausgeführt, wenn vorgänger ausgeführt
+//     function add(task) {
+//         tasks.unshift(task);
+//         process();
+//     }
+//     return {
+//         add: add,
+//         addOk: task => add( ok => { task(); ok(); }) // convenience
+//     }
+// };
+
+// // shows '0,1,2'
+//
+//         let state = [0];
+//
+//         const scheduler = Scheduler();
+//         scheduler.add(ok => {
+//             setTimeout(_ => {
+//                 state.push(1);
+//                 ok();
+//             }, 100)
+//         });
+//
+// scheduler.add(ok => {
+//     state.push(2);
+//     ok();
+// });
+//
+// scheduler.add(ok => {
+//     document.writeln(state);
+//     ok();
+// });
+
+//
+// // shows '0'
+//
+// let state = [0];
+//
+// const scheduler = Scheduler();
+// scheduler.add(ok => {
+//     setTimeout(_ => {
+//         state.push(1);
+//         ok();
+//     }, 100)
+// });
+//
+// scheduler.add(ok => {
+//     state.push(2);
+//     ok();
+// });
+//
+//
+// document.writeln(state);
+
+// // shows '0'
+//
+// let state = 3;
+//
+// const scheduler = Scheduler();
+// scheduler.add(ok => {
+//     setTimeout(_ => {
+//         state = state - 2;
+//         ok();
+//     }, 100)
+// });
+//
+// scheduler.add(ok => {
+//     state = state - 1;
+//     ok();
+// });
+//
+// scheduler.add(ok => {
+//     document.writeln(state);
+//     ok();
+// });
+
+// // shows '0'
+// //
+// let state = 3;
+//
+// const scheduler = Scheduler();
+// scheduler.add(ok => {
+//     setTimeout(_ => {
+//         state = state - 2;
+//         ok();
+//     }, 100)
+// });
+//
+// scheduler.add(ok => {
+//     state = state - 1;
+//     ok();
+// });
+//
+// scheduler.add(ok => {
+//     document.writeln(state);
+//     ok();
+// });
+//
+// console.log('x');
+//
+
+/*
+Q27
+*/
+
+const DataFlowVariable = howto => {
+    let value = undefined;
+    return () => undefined === value
+        ? value = howto()
+        : value;
+};
+
+// // shows 2
+// const x = DataFlowVariable(() => y() * 2);
+// const y = DataFlowVariable(() => 1);
+//
+// document.writeln(x());
+
+// // shows 4 ---> false --> shows 2
+// const x = DataFlowVariable(() => y() * 2);
+// let y = DataFlowVariable(() => 1);
+// x();
+// y = DataFlowVariable(() => 2);
+// // x(); müsste hier stehen
+// document.writeln(x());
+
+// // shows 2 --> True
+// const x = DataFlowVariable(() => y() * 2);
+// let y = DataFlowVariable(() => 1); // wird überschrieben
+//
+// x();
+// y = DataFlowVariable(() => 2); // wird nicht berücksichtigt
+//
+// document.writeln(x());
+
+// // shows 4
+// const x = DataFlowVariable(() => y() * 2);
+// let y = DataFlowVariable(() => 1); // wird überschrieben
+// y = DataFlowVariable(() => 2);
+//
+// document.writeln(x()); // x wird erst hier aufgerufen
+
+// // shows 2 --> false
+// const x = DataFlowVariable(() => y() * 2);
+// let y = DataFlowVariable(() => 1); // wird überschrieben
+// y = DataFlowVariable(() => 2);
+//
+// document.writeln(x());
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

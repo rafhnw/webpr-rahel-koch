@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+        /*
+        Aufgabe 1
+        */
+
+        //return true --> nothing is defined
+        //const foo = () => true;
+        //document.writeln(foo(1));
+
+        //return true --> not neccessary to define parameter --> --
+        //const foo = (x) => true;
+        //document.writeln(foo());
+
+        //returns always true --> ++
+        //function foo() {
+        //   return true;
+        //}
+        //document.writeln(foo());
+        
+        //returns function because reference --> ++
+        //function foo(){
+         //   return true;
+        //}
+        //document.writeln(foo);
+        
+        //return true nothing defined --> ok
+        //const foo = () => true;
+        //document.writeln(foo());
+        
+        //thats no function
+        //const foo = true;
+        //document.writeln(foo());
+
+        //returns is missing --> ++
+        //function foo() {
+        //   true;
+        //}
+        //document.writeln(foo());
+
+        /*
+        Aufgabe 2
+         */
+
+        //shows 1 --> correct --> funktion 1 wird aufgerufen mit parameter 1 --> also return 1
+        //shows 2 --> correct --> consider first two parameters --> 1 + 1
+        //shows 3 --> not correct --> needs one more parameter --> NaN
+        //
+        // function one(x) {
+        //     return x;
+        // }
+        //
+        // function two(x, y){
+        //     return x + y;
+        // }
+        //
+        // function three(x, y, z) {
+        //     return x + y + z;
+        // }
+        //
+        // const functions = [null, one, two, three];
+        // document.writeln(functions[2](1,1,1));
+
+        /*
+        Aufgabe 3a
+        */
+
+        // const id = (x) => x;
+        //
+        // const x_ = Math.random();
+        // document.writeln( id(x_) === x_);
+
+        /*
+        Aufgabe 3b
+        */
+
+        const plus = (x) => (y) => x + y;
+        const _x = Math.random();
+        const _y = Math.random();
+
+        const plus3 = plus(3); //referenz
+        document.writeln( plus(_x)(_y) === _x + _y && plus3(_y) === _y + 3);
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

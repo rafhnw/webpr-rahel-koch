@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+/*
+Q13
+ */
+
+// // shows false --> wir kein neues Object mit "new" erstellt
+//
+// const Empty = ( () => {
+//     function Empty() {
+//     }
+//     return Empty;
+// }) ();
+//
+// const empty = Empty;
+//
+// document.writeln(empty instanceof Empty);
+
+
+// // shows true
+// const Empty = ( () => {
+//     function Empty() {
+//     }
+//     return Empty;
+// }) ();
+//
+// // das is keine Referent --> neue instanz von Empty
+// const empty = new Empty;
+//
+// document.writeln(empty instanceof Empty);
+
+// // shows true
+// const Empty = ( () => {
+//     function Empty() {
+//     }
+//     return Empty;
+// }) ();
+//
+// const empty = new Empty;
+// const also = new Empty;
+//
+// Empty.prototype.answer = 42;
+//
+// document.writeln(
+//     empty.answer === 42 && also.answer == 42
+// );
+
+// // shows true
+// function Empty() {}
+//
+// const empty = new Empty();
+//
+// Empty.prototype.answer = 42;
+//
+// document.writeln(empty.answer === 42);
+
+
+/*
+Q14
+ */
+
+// // true
+//
+// const Person = name => {
+//     let age = 0;
+//     return {
+//         getAge: () => age,
+//             setAge: newAge => age = newAge,
+//             getName: () => name,
+//             setName: newName => name = newName
+//     }
+// };
+//
+// const me = Person("Myself");
+// me.setName("Sherlock");
+// document.writeln(me.getName() === "Sherlock");
+
+
+// // true
+// const Person = name => {
+//     let age = 0;
+//     return {
+//         getAge: () => age,
+//         setAge: newAge => age = newAge, //set age wird hier param übergeben
+//         getName: () => name,
+//         setName: newName => name = newName
+//     }
+// };
+//
+// const me = Person("Myself");
+// me.setAge(50);
+// document.writeln(me.getAge() === 50);
+
+// // false kann nicht direkt auf properties zuegegriffen werden
+// const Person = name => {
+//     let age = 0;
+//     return {
+//         getAge: () => age,
+//         setAge: newAge => age = newAge, //set age wird hier param übergeben
+//         getName: () => name,
+//         setName: newName => name = newName
+//     }
+// };
+//
+// const me = Person("Myself");
+// me.name = "***";
+// document.writeln(me.getName() === "***");
+
+// 14 a
+
+const xs1 = [1, 2, 3, 4];
+const xs2 = [1, 2, 3, 4];
+
+// const ys1 = [1, 2, 3, 4];
+// const ys2 = [1, 3, 3, 5];
+
+
+// // function dem array prototypen hinzufügen
+// Array.prototype.eq = function eq(y) {
+//
+//     let i = 0;
+//
+//     if (this.length === y.length) {
+//         while (i < this.length && this[i] === y[i]) {
+//             i++;
+//         }
+//         if (i === this.length) return true;
+//         else return false;
+//     }
+//     return false;
+// }
+
+//Elem is das element an einem bestimmten index des arrays
+Array.prototype.eq = function eq(y) {
+
+    if (this.length === y.length) {
+        return isEquals = this.every((elem, index) => (elem === y[index]));
+    } else return false;
+
+};
+
+document.writeln(xs1.eq(xs2));
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+/*
+Q19
+*/
+
+// const Observable = value => {
+//     const listener = []; // erstelle Array
+//     return {
+//         onChange: callback => listener.push(callback), // wird nur aufgerufen, wenn sich wirdklich etwas geändert hat
+//         getValue: () => value,
+//         setValue: val => {
+//             if (value == val) return;
+//             value = val;
+//             listener.forEach(listener => listener(val));
+//         }
+//
+//     }
+// };
+
+// const color = Observable('white');
+// let updateCount = 0;
+// color.onChange(_ => updateCount++);
+//
+// // color.setValue('white'); //false
+// color.setValue('black'); // true
+// document.writeln(updateCount === 1);
+
+// // true
+// const color = Observable('white');
+// let observable = null;
+// color.onChange(val => observable = val);
+//
+// color.setValue('black');
+// document.writeln(observable === color.getValue());
+
+// // true
+// const color = Observable('white');
+// color.setValue('black');
+// document.writeln(color.getValue() === 'black');
+
+// // false
+// const color = Observable('white');
+// let observable = null;
+// color.onChange(val => observable = val); // only called when smth is changing
+//
+// document.writeln(observable === color.getValue());
+
+// // false
+// const color = Observable('white');
+// color.value ='black'; // not reachable in constructor
+// document.writeln(color.getValue() === 'black');
+
+// // true, two changes
+// const color = Observable('white');
+// let updateCount = 0;
+// color.onChange(_ => updateCount++);
+//
+// color.setValue('black');
+// color.setValue('white');
+//
+// document.writeln(updateCount === 2);
+
+// // true
+// const color = Observable('white');
+// let observable = color.getValue();
+// color.onChange(val => observable = val); // only called when smth is changing
+//
+// document.writeln(observable === color.getValue());
+
+// // true
+// const color = Observable('white');
+//
+// document.writeln(color.getValue() === 'white');
+
+// // true
+// const color = Observable('white');
+// let updateCount = 0;
+// const updateListener = val => updateCount++; // must be parameter of onChange
+//
+// color.setValue('black');
+//
+// document.writeln( updateCount === 1 );
+
+
+/* q21 */
+
+const Observable = value => {
+    const listener = [];
+    return {
+        onChange: callback => {
+            listener.push(callback);
+            callback(value, value);
+        },
+        getValue: () => value,
+        setValue: newValue => {
+            if (value === newValue) return;
+            const oldValue = value;
+            value = newValue;
+            listener.forEach(callback => callback(value, oldValue));
+        }
+
+    }
+} ;
+
+let sum = 0;
+
+const trackable = Observable(0);
+trackable.onChange(value => sum = sum + value);
+
+trackable.setValue(3);
+trackable.setValue(1);
+trackable.setValue(2);
+
+console.log(sum);
+
+document.writeln(sum === 4);
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>coordination</title>
+</head>
+<body>
+<script>
+
+/* wenn Aktion B von einer Aktion A abhängig ist, dann kann B im callback von a aufgerufen werden */
+
+    test("dataflow-value", assert => {
+        // können angeben wie sich z ergibt, ohne dass wird x und y kennen
+        const z = DataFlowVariable(() => x() + y());   // z depends on x and y, which are set later...
+        const x = DataFlowVariable(() => y());         // x depends on y, which is set later...
+        const y = DataFlowVariable(() => 1);
+
+        assert.is(z(), 2);
+        assert.is(x(), 1);
+        assert.is(y(), 1);
+
+    });
+
+    // a dataflow abstraction that is not based on concurrency but on laziness
+    // is a function with callback
+    const DataFlowVariable = howto => {
+        let value = undefined;
+        return () => undefined === value
+            ? value = howto()
+            : value;
+    };
+
+
+</script>
+
+</body>
+</html>

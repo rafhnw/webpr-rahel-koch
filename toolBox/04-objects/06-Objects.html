@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>objects</title>
+</head>
+<body>
+<script>
+
+    // this in javaScript
+    // closer to hashmaps than to classes
+    // if we would like to evoke function() in another object, we have to replace contact with the other object --> reason to use this
+
+    // functions are objects, but objects aren't functions
+
+    contact = {
+        firstname: "Joe",
+
+        printName: function () {
+            console.log(contact.firstname)
+        },
+        printLater: function () {
+            var that = this;
+            setTimeout(function () {
+                that.printName()
+            }, 15000)
+        },
+        printLaterBetter: function() {
+            //bind feature
+            setTimeout(this.printName.bind(this), 1500);
+        },
+
+        printLaterAllCaps : function () {
+            // setTimeout(function () {
+            //     console.log(this.firstname.toUpperCase());
+            // }.bind(this), 1500);
+
+            setTimeout( () => {
+                console.log(this.firstname.toUpperCase());
+            }, 1500);
+        }
+    };
+
+    // shows false --> wir kein neues Object mit "new" erstellt
+    const Empty = ( () => {
+        function Empty() {
+        }
+        return Empty;
+    }) ();
+
+    const empty = Empty;
+
+    document.writeln(empty instanceof Empty);
+
+
+    // shows true
+    const Empty = ( () => {
+        function Empty() {
+        }
+        return Empty;
+    }) ();
+
+    // das is keine Referent --> neue instanz von Empty
+    const empty = new Empty;
+
+    document.writeln(empty instanceof Empty);
+
+</script>
+</body>
+</html>

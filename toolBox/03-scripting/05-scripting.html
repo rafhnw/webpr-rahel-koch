@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scripting</title>
+</head>
+<body>
+<script>
+
+    /* single origin policy */
+    // code muss von gleichen ursprung kommen, wenn er anderen code verändert
+
+    /* filesystem is nullorigin */
+    // js darf nicht auf dem filesystem lesen
+
+
+    //git message als string zurück
+    //const show = msg => eval("alert('hi');");
+
+    // const show = msg => eval("alert('"+ msg.toUpperCase()+ "');");
+    //
+    // show("hallo");
+
+    //const bonusCalculation = e => eval(e.bonus = e.revenue * 0.2)
+
+    // const e = {revenue: 1000, bonus: null}
+    // bonusCalculation(e);
+    // e.bonus === e.revenue * 0.2;
+
+    const bonusFormula = 'employee.revenue * 0.2'
+
+    const bonusCalculation = Function('e', 'return e.bonus = e.revenue * factor_');
+
+
+
+
+</script>
+</body>
+</html>

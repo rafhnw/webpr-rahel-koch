@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+/*
+Q15
+ */
+
+// // name ist länger als 3 also true
+// class Person {
+//     isCool() {
+//         return this.name.length > 3
+//     };
+// }
+//
+// const p = new Person();
+// p.name = "Dierk";
+// document.writeln(p.isCool());
+
+// class Person {
+//     constructor(name) {
+//         // this.name = name; --> müsse erhänzt werden
+//     }
+//     isCool() {
+//         return this.name.length > 3 // ist zum zeitpunkt noch undefined
+//     };
+// }
+//
+// const p = new Person("Dierk");
+// document.writeln(p.isCool());
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     isCool() {
+//         return this.name.length > 3
+//     };
+// }
+//
+// const p = new Person("Dierk");
+// document.writeln(p.name === "Dierk");
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     isCool() {
+//         return this.name.length > 3
+//     };
+// }
+//
+// const p = new Person("Joe");
+// p.isCool = () => true;
+// document.writeln(p.isCool());
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     isCool() {
+//         return this.name.length > 3
+//     };
+// }
+//
+// const p = new Person("Joe");
+// Person.prototype.isCool = () => true;
+// document.writeln(p.isCool());
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     isCool() {
+//         return (name === 'Dierk') //hier fehlt das this, darum ist es false
+//     };
+// }
+// //Warum ist das false?
+//
+// const p = new Person("Dierk");
+// document.writeln(p.isCool());
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     isCool() {
+//         return this.name.length > 3
+//     };
+// }
+//
+// const p = new Person("Dierk");
+//
+// const joe = {
+//     name: "joe",
+//     cool: p.isCool //hier müsste funktion aufgerufen werden und nicht nur property
+// };
+//
+// document.writeln(joe.cool()); //hier muss property stehen und nicht funktion
+
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     isCool() {
+//         return this.name.length > 3
+//     };
+// }
+//
+// const p = new Person("Dierk");
+// document.writeln(p.isCool());
+
+
+        /* Q16 */
+
+
+        // class Person {}
+        // class Student {}
+        //
+        // const s = new Student();
+        // Object.setPrototypeOf(Student, Person);
+        // document.writeln(s instanceof Person); // keine vererbung also false
+        //
+        // class Person {
+        //
+        // }
+        // const p = {}; // keine klasse zugewiesem
+        // Object.setPrototypeOf(p, Person); // hier müsste Person.prototype zugewiesen werden
+        //
+        // document.writeln(p instanceof Person);
+
+        // class Person {
+        //     constructor(name) {
+        //         this.name = name;
+        //     }
+        //     iscool() { return this.name.length > 3};
+        // }
+        // const p = new Person("Dierk");
+        //
+        // document.writeln(p instanceof Person);
+
+// class Person {}
+// class Student {}
+//
+// const s = new Student();
+// Object.setPrototypeOf(s, Student.prototype);
+// document.writeln(s instanceof Person); // ist instanceof Student
+
+// class Person {}
+// class Student {}
+//
+// const s = new Student();
+// Object.setPrototypeOf(Student.prototype, Person.prototype); // hier wird dem Prototype von Student den Prototype von Person zugewiesen (vererbung)
+// document.writeln(s instanceof Person);
+//
+//         class Person {
+//
+//         }
+//
+//         class Student extends Person {}
+//         const s = new Student();
+//
+//         document.writeln(s instanceof Person);
+
+// class Person {}
+// class Student {}
+//
+// const s = new Student();
+// Object.setPrototypeOf(s, Person.prototype); // hier wird der Referenz auf Student den Prototype von Person zugewiesen (vererbung)
+// document.writeln(s instanceof Student);
+
+/* Q16a */
+
+const inc = x => x + 1;
+const double = x => x * 2;
+
+const id = arg => arg;
+const second = arg1 => arg2 => arg2;
+
+console.log(id(double));
+console.log(second(double)(1));
+
+//Function.prototype.then = x => foo1 => foo2 => foo2(foo1);
+
+Function.prototype.then = function(fun1){
+    console.log(fun1); //double
+    console.log(this);
+    return fun2 = x => fun1(this(x));
+};
+
+const test = foo => args => foo(args);
+
+console.log(test(double) (1) === 2)
+
+console.log(inc.then(double) (1));
+console.log(inc.then(double).then(double) (1));
+
+// {
+//     this.firstValue = x;
+//     return function () {
+//         return then(this);
+//     }
+// }
+
+//console.log(inc.then(double).then(double) (1));
+
+// (1 + 1 ) * 2 * 2
+
+
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

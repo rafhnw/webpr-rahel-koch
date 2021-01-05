@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+
+/*
+Q17
+ */
+
+// function Todo(text, done) {
+//     const check = () => done = true;
+//     return {
+//         getText: () => text,
+//         isDone: () => done,
+//         check: check
+//     }
+// }
+//     let todo = Todo("buy milk", false); // referenz auf Todo -> return false
+//     todo.check(); // set done to true
+//
+//     document.writeln(todo.isDone());
+
+// function Todo(text) {
+//     const done = false; // cannot assign value to const variable --> let
+//     return {
+//         getText: () => text,
+//         isDone: () => done,
+//         check: () => done = true
+//     }
+// }
+// let todo = Todo("buy milk", false); // referenz auf Todo -> return false
+// todo.check(); // set done to true
+//
+// document.writeln(todo.isDone());
+
+// function Todo(text) {
+//     let done = false;
+//     //const check = () => done = true;
+//
+//     return {
+//         getText: () => text,
+//         isDone: () => done,
+//         check: done = true
+//     }
+// }
+// let todo = Todo("buy milk", false);
+// todo.check(); // no lonager a function
+//
+// document.writeln(todo.isDone());
+
+// function Todo(text) {
+//     let done = false;
+//     const check = () => done = true;
+//
+//     return {
+//         getText: () => text,
+//         isDone: () => done,
+//         check: check
+//     }
+// }
+// let todo = new Todo("buy milk");
+// todo.check(); // no lonager a function
+//
+// document.writeln(todo.isDone());
+
+// function Todo(text, done) {
+//     function check() { done = true }
+//     return {
+//         getText: () => text,
+//         isDone: () => done,
+//         check: check
+//     }
+// }
+//
+// let todo = Todo("by mils", false);
+// todo.check();
+// document.writeln(todo.isDone());
+
+// function Todo(text, done) {
+//     console.log(this);
+//     const check = () => this.done = true; // warum kann hier this nicht verwendet werden?
+//     return {
+//         getText: () => text,
+//         isDone: () => done,
+//         check: check
+//     }
+// }
+//
+// let todo = Todo("by mils", false);
+// todo.check();
+// document.writeln(todo.isDone());
+
+/*
+Q18
+ */
+//
+// function handle(callback) {
+//     const result = [];
+//     callback(result);
+//     return result;
+// }
+// document.writeln( handle(it.push(1)).length === 1) // it must be defined
+
+// function handle(callback) {
+//     const result = [];
+//     callback( [] ); // funktioniert nicht
+//     return result;
+// }
+// document.writeln( handle(it => it.push(1)).length === 1)
+
+// function handle(callback) {
+//     const result = [];
+//     callback(result);
+//     return result;
+// }
+// let it = [];
+// document.writeln( handle( () => it.push(1)).length === 1) // length === 0
+// document.writeln( handle( it => it.push(1)).length === 1) // true
+
+
+// function handle(callback) {
+//     return callback([]);
+// }
+// document.writeln( it => { it.push(1); return it;}).length === 1); // false
+// document.writeln( handle( () => [1]).length === 1); // true
+
+// function handle(callback) {
+//     const result = [];
+//     callback([result]);
+//     return result;
+// }
+//
+// document.writeln( handle( () => [1]).length === 1); // true
+
+// function handle(count, callback) {
+//     const result = [];
+//     for (let i=0; i < count; i++) {
+//         callback(result);
+//     }
+//     return result;
+// }
+// document.writeln( handle(3, it => it.push(1)).length === 3)
+// console.log(handle(3, it => it.push(1))); // (3) [1, 1, 1]
+
+// function handle(callback) {
+//     const result = [];
+//     callback(result);
+//     callback(result); // i wird 2x abgespeichert
+//     return result;
+// }
+//
+// document.writeln( handle( it => it.push(1)).length === 2);
+
+// function handle(callback) {
+//     const result = [];
+//     return callback(result);
+// }
+//
+// document.writeln( handle( () => [1]).length === 1);
+
+// dont forget return!
+const failSafe = def => callback => value =>
+    { try { return callback(value) }
+        catch (e) { return def }
+}
+
+const doError = x => { throw new Error() };
+const errorCount = failSafe (1) (doError);
+
+document.writeln( failSafe (false) (x => x) (true) && failSafe (true) (doError) (null) && errorCount(null) === 1);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

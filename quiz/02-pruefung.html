@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Tests</title>
+</head>
+<body>
+    <script>
+
+        // function two() {
+        //     x = 2;
+        //     return x;
+        // }
+        //
+        // two(); //ohne diesen aufruf false, warum?
+        //
+        // try { //is x in scope? --> ok, weil aufruf
+        //     x;
+        //     document.writeln(true)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+
+        // let x = 0; //wird hier von x überschrieben x = 2
+        //
+        // function two() {
+        //     x = 2;
+        //     return x;
+        // }
+        //
+        // two();
+        //
+        // try {
+        //     x;
+        //     document.writeln(x === 0)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        //let x = 0; //wird hier von x überschrieben x = 2
+
+        // //warum ist das false?
+        // function two() {
+        //     let x = 2;
+        //     return x;
+        // }
+        //
+        // //two(); //ohne diesen aufruf false, warum?
+        //
+        // try { //is x in scope? --> ok, weil aufruf
+        //     x;
+        //     document.writeln(true)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        // let x = 0;
+        //
+        // function two() {
+        //     let x = 2;
+        //     return x;
+        // }
+        //
+        // two();
+        //
+        // try { //is x in scope? --> ok, weil aufruf
+        //     x;
+        //     document.writeln(x === 0)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+
+        // //false
+        // x = 0;
+        // ( () => {
+        //     x = 2;
+        //     return x;
+        // }) ();
+        //
+        // try { //is x unchanged
+        //     document.writeln(x === 0)
+        //     } catch (e) {
+        //     document.writeln(false)
+        // }
+
+
+        // //true
+        // let x = 0;
+        // ( function two() {
+        //     let x = 2;
+        //     return x;
+        // }) ();
+        //
+        // try { //is x unchanged
+        //     document.writeln(x === 0)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        // //true
+        // let x = 0;
+        // function two() {
+        //     let x = 2;
+        //     return x;
+        // }
+        // two();
+        //
+        // try { //is x unchanged
+        //     document.writeln(x === 0)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        //tre
+        // let x = 0;
+        // ( function () {
+        //     let x = 2;
+        //     return x;
+        // }) ();
+        //
+        // try { //is x unchanged
+        //     document.writeln(x === 0)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        // //
+        // let x = 0;
+        // ( function two() {
+        //     let x = 2;
+        //     return x;
+        // }();
+        //
+        // try { //is x unchanged
+        //     document.writeln(x === 0)
+        // } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        // let x = 0;
+        // ( () => {
+        //    let x = 2;
+        //     return x;
+        // }) ();
+        //
+        // try { //is x unchanged
+        //     document.writeln(x === 0)
+        //     } catch (e) {
+        //     document.writeln(false)
+        // }
+
+        // const id = y => y;
+        // const fst = x => y => x;
+        //
+        // const snd = fst(id);
+        //
+        // document.writeln(snd(undefined)(3) === 3);
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>functions</title>
+</head>
+<body>
+<script>
+
+    // leeres array []
+
+    // hier kann keine errorfunction geschrieben werden, wegen den this
+
+    Number.prototype.times = function(callback) {
+        return Array.from({length:this}, (_,index) => callback(index) );
+    }
+
+    //prototype bekommt neue funktion(times) vom type funktion
+    //number constructor für zahlen
+    // hat funktion parameter?--> schauen in test: n => collect.push(n) --> funktion
+
+    Number.prototype.times = function(callback) {
+        // wir haben this zur verfühgung (bezieht sich auf number)
+
+        for (i=0; i<this; i++) {
+            callback(this);
+            //irgend ein element in funktion gegeben und index
+            Array.from({length:this}, (_, index) => callback(index));
+        }
+    }
+
+    // Vererbung
+
+    class Person {}
+    class Student {}
+
+    const s = new Student();
+    Object.setPrototypeOf(Student.prototype, Person.prototype); // hier wird dem Prototype von Student den Prototype von Person zugewiesen (Vererbung)
+    document.writeln(s instanceof Person);
+
+            class Person {
+
+            }
+
+            class Student extends Person {}
+            const s = new Student();
+
+            document.writeln(s instanceof Person);
+
+    // name ist länger als 3 also true
+    class Person {
+        isCool() {
+            return this.name.length > 3
+        };
+    }
+
+    const p = new Person();
+    p.name = "Dierk";
+    document.writeln(p.isCool());
+
+
+
+</script>
+</body>
+</html>

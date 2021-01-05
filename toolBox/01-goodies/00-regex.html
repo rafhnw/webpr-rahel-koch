@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regex</title>
+</head>
+<body>
+    <script>
+
+        const s = "The Rain in Spain stays mainly in the plains";
+        // const result = s.replace("ain", "___"); // nur erster wird ersetzt
+        const result = s.replace(/ain/g, "___"); // replace all
+
+        document.writeln(s);
+        document.writeln(result);
+
+        // wollen alle worte ersetzen, die mind. 4 Buchstaben haben
+        const s2 = "The Rain in Spain stays mainly in the plains";
+        const r2 = s2.replace(/\w+/g, "*"); // stern einer keiner oder beliebeig viele sollen durch stern ersetzt werden
+
+        document.writeln(s2);
+        document.writeln(r2);
+
+        // immer ein testcase für regex schreiben!!!
+
+        // wollen alle worte ersetzen, die mind. 4 Buchstaben haben
+        const s3 = "The Rain in Spain stays mainly in the plains";
+        const wordregex = /\w+/;
+        const twowords = `${wordregex} ${wordregex}`
+        const r3 = s3.match(twowords); // stern einer keiner oder beliebeig viele sollen durch stern ersetzt werden
+
+        document.writeln(s2);
+        document.writeln(r2);
+
+
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
